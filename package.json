@@ -2,6 +2,19 @@
   "name": "react-cron-select",
   "version": "0.0.1",
   "description": "基于 React 的 Cron 表达式生成组件",
+  "keywords": [
+    "react",
+    "component",
+    "components",
+    "cron",
+    "cron-select",
+    "react-cron-select"
+  ],
+  "homepage": "https://louhaojie99.github.io/react-cron-select",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/louhaojie99/react-cron-select"
+  },
   "license": "MIT",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
