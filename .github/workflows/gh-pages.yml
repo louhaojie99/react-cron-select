@@ -3,7 +3,7 @@ name: github pages
 on:
   push:
     branches:
-      - master # default branch
+      - master # 默认分支
 
 jobs:
   deploy:
