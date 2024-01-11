@@ -3,23 +3,68 @@
 [![NPM version](https://img.shields.io/npm/v/react-cron-select.svg?style=flat)](https://npmjs.org/package/react-cron-select)
 [![NPM downloads](http://img.shields.io/npm/dm/react-cron-select.svg?style=flat)](https://npmjs.org/package/react-cron-select)
 
-基于 React 的 Cron 表达式生成组件
+> 基于 React 的 Cron 表达式生成组件 🌈
 
-## 快速上手
+> 遇到使用难题，可以提出 Issues 🔥
+ 
+> 如果您发现这个组件对您有益，不妨给予作者一颗星的鼓励 🌟
 
-### 安装
+## ✨ 特性
 
-推荐使用 `pnpm` 包管理器，节省磁盘空间
+- 使用 TypeScript 编写，具有可预测的静态类型
+- 全面支持 cron：秒、分、时、日、月、周、年
+- 支持反解析 cron 表达式到 UI
+
+## 📦 安装
+
+> 包的安装有多种方式，使用其一即可
 
 ```bash
-pnpm install
+npm install react-cron-select
+
+pnpm install react-cron-select
+
+yarn add react-cron-select
 ```
 
-### 启动
+### 💻 预览地址
 
-```bash
-pnpm start
+[点击直达](https://louhaojie99.github.io/react-cron-select/)
+
+## 🔨 用法
+
+### BaseCronSelect
+
+可结合此组件与 Antd 的下拉及输入组件封装成下拉输入框等（自定义为自己期望的样子）
+
+> 
+ 
+```jsx
+TODO: 待补充
 ```
+
+### CronSelect
+
+组件基于上述组件 BaseCronSelect 封装输入框组件选择器
+
+> 
+ 
+```jsx
+TODO: 待补充
+```
+
+### 在 Form 表单中如何使用
+
+> 
+ 
+```jsx
+TODO: 待补充
+```
+
+## 📢 声明
+
+该组件改编自 [qnn-react-cron](https://github.com/louhaojie99/qnn-react-cron)
+改编原因：作者长时间未更新组件 一些使用的问题未能得到及时的处理和更新
 
 ## LICENSE
 
