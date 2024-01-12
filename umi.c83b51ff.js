@@ -191,11 +191,12 @@ import SecondPane from './components/SecondPane';
 import WeekPane from './components/WeekPane';
 import YearPane from './components/YearPanel';
 import './index.less';
+import type { CronProps } from './types';
 import { validateCronField } from './utils';
 
 const { TabPane } = Tabs;
 
-const Cron = React.memo<any>((props) => {
+const Cron = React.memo<CronProps>((props) => {
   const {
     style,
     value,
