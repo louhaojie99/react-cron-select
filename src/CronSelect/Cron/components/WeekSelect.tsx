@@ -1,4 +1,5 @@
 // TODO: 开源社区Cory过来的，待重构
+// @ts-nocheck
 import { Select } from 'antd';
 import React from 'react';
 

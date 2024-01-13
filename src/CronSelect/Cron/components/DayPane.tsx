@@ -1,4 +1,5 @@
 // TODO: 开源社区Cory过来的，待重构
+// @ts-nocheck
 import { Checkbox, Col, InputNumber, Radio, Row } from 'antd';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
