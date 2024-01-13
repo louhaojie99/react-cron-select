@@ -206,7 +206,7 @@ const Cron = React.memo<CronProps>((props) => {
   return (
     <Card
       className={classNames(prefixCls, className)}
-      style={defaultTo(style, {})}
+      style={defaultTo(style, { width: 630 })}
       bodyStyle={{ padding: '4px 24px 0' }}
       title={panelTitle}
     >

@@ -33,33 +33,24 @@ yarn add react-cron-select
 
 ## 🔨 用法
 
+组件使用指南：[点击直达](https://louhaojie99.github.io/react-cron-select/)
+
 ### BaseCronSelect
 
 这是一个基础组件，可结合此组件封装一些自定义的使用场景
 
->
-
-```jsx
-TODO: 待补充;
-```
+<img width=700 src="./preview/BaseCronSelect.png" alt="效果图" />
 
 ### CronSelect
 
 基于 BaseCronSelect 封装为一个输入框形式来使用
 
->
-
-```jsx
-TODO: 待补充;
-```
+<img width=700 src="./preview/CronSelect.png" alt="效果图" />
 
 ### 在 Form 表单中如何使用
 
->
-
-```jsx
-TODO: 待补充;
-```
+<img width=700 src="./preview/FomCronSelect.png" alt="效果图" />
+<img width=700 src="./preview/FormCronSelectConfig.png" alt="效果图" />
 
 ## 📢 声明
 

@@ -26,10 +26,24 @@ export default Demo;
 
 ```tsx
 import React, { useState } from 'react';
+import { Space } from 'antd';
+import BaseCronSelect from './BaseCronSelect';
+
+const ShowFormValues = ({ value }: { value: string }) => (
+  <Space>
+    <h4>测试组件提交: </h4>
+    <span>{value}</span>
+  </Space>
+);
 
 const Demo = () => {
   const [value, setValue] = useState('');
-  return <div>TODO: 待补充</div>;
+  return (
+    <>
+      <ShowFormValues value={value} />
+      <BaseCronSelect value={value} onChange={setValue} />
+    </>
+  );
 };
 
 export default Demo;
@@ -41,10 +55,29 @@ export default Demo;
 
 ```tsx
 import React, { useState } from 'react';
+import { Space } from 'antd';
+import CronSelect from './CronSelect';
+
+const ShowFormValues = ({ value }: { value: string }) => (
+  <Space>
+    <h4>测试组件提交: </h4>
+    <span>{value}</span>
+  </Space>
+);
 
 const Demo = () => {
   const [value, setValue] = useState('');
-  return <div>TODO: 待补充</div>;
+  return (
+    <>
+      <ShowFormValues value={value} />
+      <br />
+      <CronSelect
+        inputProps={{ style: { width: 390 } }}
+        value={value}
+        onChange={setValue}
+      />
+    </>
+  );
 };
 
 export default Demo;
@@ -55,13 +88,15 @@ export default Demo;
 ```tsx
 import React, { useState } from 'react';
 import { Form, Input, Button, Space } from 'antd';
+import CronSelect from './CronSelect';
+
 import type { FormProps } from 'antd';
 
 const ShowFormValues = ({ value }: { value: string }) => (
-  <p>
-    <span>提交的值：</span>
+  <Space>
+    <h4>测试组件提交: </h4>
     <span>{value}</span>
-  </p>
+  </Space>
 );
 
 const Demo = () => {
@@ -86,7 +121,10 @@ const Demo = () => {
           name="cron"
           rules={[{ required: true, message: '请输入!' }]}
         >
-          <Input placeholder="请输入!" />
+          <CronSelect
+            inputProps={{ style: { width: 300 } }}
+            placeholder="请输入!"
+          />
         </Form.Item>
 
         <Form.Item>
