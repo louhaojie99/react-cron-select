@@ -1,12 +1,12 @@
 /**
  * Cron 底层组件
  */
-import { useDeepCompareEffect, useSetState, useUpdateEffect } from 'ahooks';
+import { useDeepCompareEffect, useSetState } from 'ahooks';
 import type { TabsProps } from 'antd';
 import { Button, Card, Space, Tabs } from 'antd';
 import classNames from 'classnames';
 import { compact, defaultTo, map, zipObject } from 'lodash';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { ContextProvider } from './Context';
 import DayPane from './components/DayPane';
 import HourPane from './components/HourPane';
@@ -15,7 +15,7 @@ import MonthPane from './components/MonthPane';
 import SecondPane from './components/SecondPane';
 import WeekPane from './components/WeekPane';
 import YearPane from './components/YearPanel';
-import { prefixCls } from './constants';
+import { DEFAULTS, prefixCls } from './constants';
 import './index.less';
 import type { CronFieldValues, CronProps } from './types';
 import {
@@ -46,15 +46,7 @@ const Cron = React.memo<CronProps>((props) => {
 
   const [currentTab, setCurrentTab] = useState<`${CronFieldName}`>(defaultTab);
 
-  const [state, setState] = useSetState<CronFieldValues>({
-    second: '*',
-    minute: '*',
-    hour: '*',
-    day: '*',
-    month: '*',
-    week: '?',
-    year: '*',
-  });
+  const [state, setState] = useSetState<CronFieldValues>(DEFAULTS);
 
   const { second, minute, hour, day, month, week, year } = state;
 
@@ -66,9 +58,9 @@ const Cron = React.memo<CronProps>((props) => {
   const parseValueToView = async () => {
     if (!propsValue) return {};
 
-    const cronFields = [SECOND, MINUTE, HOUR, DAY, MONTH, WEEK, YEAR];
-    const defaults = ['*', '*', '*', '*', '*', '?', '*'];
     const values = propsValue.split(' ');
+    const cronFields = Object.keys(DEFAULTS) as CronFieldName[];
+    const defaults = Object.values(DEFAULTS);
 
     const validatedValues = map(values, (val, index) =>
       validateCronField(val, cronFields[index]) ? val : defaults[index],
@@ -86,7 +78,7 @@ const Cron = React.memo<CronProps>((props) => {
     return { propsValue, ...result };
   };
 
-  useUpdateEffect(() => {
+  useEffect(() => {
     getCronFns?.({
       onParse: parseValueToView,
       getValue: () => finalValue,
@@ -108,6 +100,7 @@ const Cron = React.memo<CronProps>((props) => {
         day: value,
         week: values.week,
       });
+      return;
     }
 
     if (type === 'week') {
@@ -116,6 +109,7 @@ const Cron = React.memo<CronProps>((props) => {
         week: value,
         day: values.day,
       });
+      return;
     }
 
     const newValue = {
