@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import { compact, defaultTo, map, zipObject } from 'lodash';
 import React, { useEffect, useMemo, useState } from 'react';
 import { ContextProvider } from './Context';
-import DayPane from './components/DayPane';
+import DayConfigPanel from './components/DayConfigPanel';
 import HourPane from './components/HourPane';
 import MinutePane from './components/MinutePane';
 import MonthPane from './components/MonthPane';
@@ -173,7 +173,7 @@ const Cron = React.memo<CronProps>((props) => {
         label: '日',
         key: DAY,
         value: DAY,
-        children: renderPane(DayPane, day, DAY),
+        children: renderPane(DayConfigPanel, day, DAY),
       },
       panesShow.month && {
         label: '月',

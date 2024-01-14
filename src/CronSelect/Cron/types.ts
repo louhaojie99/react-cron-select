@@ -15,6 +15,12 @@ export type CronFieldValues = {
   [key in CronFieldName]?: string;
 };
 
+export interface BaseConfigProps {
+  defaultValue?: string;
+  value?: string;
+  onChange?: (value: string) => void;
+}
+
 export interface CronFns {
   /** 解析Cron表达式到UI */
   onParse: () => Promise<any>;
