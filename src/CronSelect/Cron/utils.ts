@@ -73,6 +73,7 @@ export const defaultValue: Options = {
   minYear: 2000,
   maxYear: 2100,
   panelTitle: '请选择',
+  showPreviewValue: true,
   panesShow: {
     [CronFieldName.SECOND]: true,
     [CronFieldName.MINUTE]: true,

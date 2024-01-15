@@ -1,7 +1,6 @@
 /**
- * @file Cron表达式生成组件（输入框 + 气泡弹出选择器）组合版
+ * @file 基于 BaseCronSelect 封装的选择器（输入框 + 气泡面板）组合版
  */
-
 import { EditOutlined } from '@ant-design/icons';
 import { useControllableValue } from 'ahooks';
 import { Input, Popover } from 'antd';
@@ -10,14 +9,13 @@ import BaseCronSelect from './BaseCronSelect';
 import type { CronSelectProps } from './types';
 
 const CronSelect = React.memo<CronSelectProps>((props) => {
-  const { inputProps, cronSelectProps, defaultValue, ...restProps } = props;
+  const { inputProps, cronSelectProps, defaultValue } = props;
 
-  // 组件支持受控和非受控使用
-  const [inputValue, setInputValue] = useControllableValue(restProps, {
+  const [inputValue, setInputValue] = useControllableValue(props, {
     defaultValue,
   });
 
-  const [visible, setVisible] = useControllableValue(restProps, {
+  const [visible, setVisible] = useControllableValue(props, {
     defaultValue: false,
     valuePropName: 'visible',
     trigger: 'onVisibleChange',
@@ -25,7 +23,6 @@ const CronSelect = React.memo<CronSelectProps>((props) => {
 
   const handleClose = () => setVisible(false);
 
-  // 气泡内容
   const content = (
     <BaseCronSelect
       {...cronSelectProps}

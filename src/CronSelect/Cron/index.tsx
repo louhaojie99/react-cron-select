@@ -1,5 +1,5 @@
 /**
- * Cron 底层组件
+ * @file 生成 cron 字符串的 React 组件
  */
 import { useDeepCompareEffect, useSetState } from 'ahooks';
 import type { TabsProps } from 'antd';
@@ -42,7 +42,14 @@ const Cron = React.memo<CronProps>((props) => {
   } = props;
 
   const options = getOptionsWithDefaultValue(propsOptions);
-  const { defaultTab, panelTitle, panesShow, showFooter } = options;
+  const {
+    defaultTab,
+    panelTitle,
+    showPreviewValue,
+    panesShow,
+    showFooter,
+    onOkBtnProps,
+  } = options;
 
   const [currentTab, setCurrentTab] = useState<`${CronFieldName}`>(defaultTab);
 
@@ -50,7 +57,7 @@ const Cron = React.memo<CronProps>((props) => {
 
   const { second, minute, hour, day, month, week, year } = state;
 
-  const finalValue = useMemo(
+  const cronValue = useMemo(
     () => [second, minute, hour, day, month, week, year].join(' '),
     [second, minute, hour, day, month, week, year],
   );
@@ -81,9 +88,9 @@ const Cron = React.memo<CronProps>((props) => {
   useEffect(() => {
     getCronFns?.({
       onParse: parseValueToView,
-      getValue: () => finalValue,
+      getValue: () => cronValue,
     });
-  }, [finalValue]);
+  }, [cronValue]);
 
   useDeepCompareEffect(() => {
     parseValueToView();
@@ -120,7 +127,7 @@ const Cron = React.memo<CronProps>((props) => {
   };
 
   const handleGenerate = () => {
-    onOk?.(finalValue);
+    onOk?.(cronValue);
   };
 
   const renderDefaultFooter = () => {
@@ -130,7 +137,7 @@ const Cron = React.memo<CronProps>((props) => {
         <Button type="default" onClick={parseValueToView}>
           解析到UI
         </Button>
-        <Button type="primary" onClick={handleGenerate}>
+        <Button {...onOkBtnProps} type="primary" onClick={handleGenerate}>
           生成
         </Button>
       </Space>
@@ -175,17 +182,17 @@ const Cron = React.memo<CronProps>((props) => {
         value: DAY,
         children: renderPane(DayConfigPanel, day, DAY),
       },
-      panesShow.month && {
-        label: '月',
-        key: MONTH,
-        value: MONTH,
-        children: renderPane(MonthPane, month, MONTH),
-      },
       panesShow.week && {
         label: '周',
         key: WEEK,
         value: WEEK,
         children: renderPane(WeekPane, week, WEEK),
+      },
+      panesShow.month && {
+        label: '月',
+        key: MONTH,
+        value: MONTH,
+        children: renderPane(MonthPane, month, MONTH),
       },
       panesShow.year && {
         label: '年',
@@ -203,6 +210,7 @@ const Cron = React.memo<CronProps>((props) => {
       style={defaultTo(style, { width: 630 })}
       bodyStyle={{ padding: '4px 24px 0' }}
       title={panelTitle}
+      extra={showPreviewValue && <b>{cronValue}</b>}
     >
       {/* 配置面板选项 */}
       <Tabs
@@ -217,13 +225,13 @@ const Cron = React.memo<CronProps>((props) => {
   );
 });
 
-const withContextComponentWrapper = (props: CronProps) => (
+const withContextComponentWrapper = React.memo<CronProps>((props) => (
   // options 配置注入 Context 中共享到上下文, 方便后续组件维护
-  // 根组件直接消费 props => options 即可, Context 中的数据主要应用于 Child Compoennt 中
+  // 根组件直接消费 props => options 即可, Context 中的数据主要应用于 Child Component 中
   <ContextProvider value={props?.options}>
     <Cron {...props} />
   </ContextProvider>
-);
+));
 withContextComponentWrapper.displayName = 'Cron';
 
 export default withContextComponentWrapper;

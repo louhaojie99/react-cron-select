@@ -1,5 +1,5 @@
 /**
- * @file Cron 基础组件
+ * @file 基于 Cron 封装的基础组件
  */
 import { useControllableValue } from 'ahooks';
 import { Button, Space } from 'antd';
@@ -10,10 +10,10 @@ import Cron from './Cron';
 import type { CronFns } from './Cron/types';
 import type { BaseCronSelectProps } from './types';
 
-const BaseCronSelect: React.FC<BaseCronSelectProps> = (props) => {
-  const { className, style, onClose, defaultValue, ...restProps } = props;
+const BaseCronSelect = React.memo<BaseCronSelectProps>((props) => {
+  const { className, style, defaultValue, onClose, ...restProps } = props;
   const cronRef = useRef<CronFns | null>(null);
-  const [value, setValue] = useControllableValue<string>(restProps, {
+  const [value, setValue] = useControllableValue<string>(props, {
     defaultValue,
   });
 
@@ -21,9 +21,9 @@ const BaseCronSelect: React.FC<BaseCronSelectProps> = (props) => {
     if (cronRef.current) {
       const newValue = cronRef.current.getValue();
       setValue(newValue);
-      restProps.onChange?.(newValue);
+      props.onChange?.(newValue);
     }
-  }, [setValue, restProps.onChange]);
+  }, [setValue, props.onChange]);
 
   const getCronFns: BaseCronSelectProps['getCronFns'] = (fns) => {
     cronRef.current = fns;
@@ -50,6 +50,6 @@ const BaseCronSelect: React.FC<BaseCronSelectProps> = (props) => {
       />
     </div>
   );
-};
+});
 
 export default BaseCronSelect;

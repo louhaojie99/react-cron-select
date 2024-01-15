@@ -50,6 +50,8 @@ export type Options = {
   minYear: number;
   /** 初始化最大年份 */
   maxYear: number;
+  /** 是否显示配置面板右上角预览值 */
+  showPreviewValue?: boolean;
   /** 面板配置项显示控制 */
   panesShow: PanelShow;
   /** 覆盖到面板详情各个配置项的显示或禁用控制（更加的粒度化） */

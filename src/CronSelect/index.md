@@ -2,7 +2,7 @@
 
 ## Cron
 
-底层组件测试
+生成 cron 字符串的 React 底层组件
 
 ```tsx
 import React, { useState } from 'react';
@@ -144,3 +144,17 @@ const Demo = () => {
 
 export default Demo;
 ```
+
+## API
+
+#### Cron
+
+TODO: 作者正在紧张地写作中，敬请期待...
+
+#### BaseCronSelect
+
+TODO: 作者正在紧张地写作中，敬请期待...
+
+#### CronSelect
+
+TODO: 作者正在紧张地写作中，敬请期待...
